@@ -22,7 +22,8 @@ Output from the installed software should be piped to a log file.
 * Git (with auto complete for the current shell)
 * MySQL (basic setup and autorun)
 * MongoDB (autorun)
-* MemCached (autorun)
+* Memcached
+* PostgreSQL
 * ImageMagick
 * QT
 * wkhtmltopdf
