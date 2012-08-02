@@ -17,6 +17,7 @@ Output from the installed software should be piped to a log file.
 ### What this will install
 
 * GCC
+* X11 (http://xquartz.macosforge.org/)
 * Homebrew (first so /usr/local has the correct rights when rvm is run)
 * RVM with ruby versions REE and 1.9.x (set as default)
 * Git (with auto complete for the current shell)
