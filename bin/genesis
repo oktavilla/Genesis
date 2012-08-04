@@ -1,38 +1,33 @@
 #!/usr/bin/env sh
 
+# Exit on error
+set -e;
 
-# Utilities
-
-command_exists () {
-  type "$1" &> /dev/null ;
-}
-
-ensure_xcode () {
-  if ! command_exists xcruns; then
-    printf "%b" "
-
- ** XCODE COMMAND LINE TOOLS NOT INSTALLED **
-
- How to install the command line tools:
-
-  1) Install Xcode from the App Store
-  2) Open Xcode
-  3) Open preferenses from Xcode menu
-  4) Select Downloads and click Install for Command Line Tools 
-
- After installed please re-run genesis.
-
-"
-    return 1
-  fi
-
-  return 0
-}
-
-# Main
-
-if ! ensure_xcode; then
-  exit;
+# Current directory for genesis
+if [ -z "$GENESIS_DIR" ]; then
+  DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+  GENESIS_ROOT="${DIR}/..";
 fi
 
-echo "Genesis is done"
+# Load libraries
+source "${GENESIS_ROOT}/lib/utils.sh"
+source "${GENESIS_ROOT}/lib/xcode.sh"
+source "${GENESIS_ROOT}/lib/homebrew.sh"
+
+debug_log "Genesis root is set to ${GENESIS_ROOT}"
+
+# Configuration
+
+GENESIS_HOMEBREW_VERSION=0.9.3
+
+# Lets do this
+
+# Exit if XCode command line tools is not installed
+if ! ensure_xcode; then
+  exit 1;
+fi
+
+ensure_homebrew;
+
+echo "Genesis is done";
+exit 0;
