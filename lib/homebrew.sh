@@ -1,11 +1,11 @@
 install_homebrew () {
-  curl -fsSk https://raw.github.com/mxcl/homebrew/go > /tmp/brew_install.sh &&
+  g_exec "InstallHomebrew", "curl -fsSk https://raw.github.com/mxcl/homebrew/go > /tmp/brew_install.sh &&
     ruby /tmp/brew_install.sh &&
-    rm /tmp/brew_install.sh
+    rm /tmp/brew_install.sh"
 }
 
 update_homebrew () {
-  brew update
+  g_exec "BrewUpdate" "brew update";
 }
 
 ensure_homebrew () {
@@ -13,11 +13,12 @@ ensure_homebrew () {
     installed_homebrew_version="$(brew --version)"
 
     if ! version_above_or_equal $installed_homebrew_version $GENESIS_HOMEBREW_VERSION; then
-      printf "Updating homebrew to latest version, version %b is to old" $installed_homebrew_version
+      echo "Updating homebrew to latest version, version $installed_homebrew_version is to old (>= $GENESIS_HOMEBREW_VERSION is needed)" 
       update_homebrew;
     fi
   else
     echo "Unable to find homebrew, installing .."
     install_homebrew;
+    echo "  DONE"
   fi
 }

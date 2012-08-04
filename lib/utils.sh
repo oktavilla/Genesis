@@ -4,6 +4,19 @@ debug_log () {
   fi
 }
 
+g_exec () {
+  command_name=$1
+  command=$2
+  output_file=/tmp/genesis-$command_name-output
+
+  if ! $(eval "$command" &> $output_file ); then
+    debug_log "Command $command failed, output saved at $output_file"
+    return 1;
+  else
+    rm $output_file; 
+  fi
+}
+
 command_exists () {
   type "$1" &> /dev/null ;
 }

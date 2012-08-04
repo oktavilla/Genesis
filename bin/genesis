@@ -14,7 +14,8 @@ source "${GENESIS_ROOT}/lib/utils.sh"
 source "${GENESIS_ROOT}/lib/xcode.sh"
 source "${GENESIS_ROOT}/lib/homebrew.sh"
 
-debug_log "Genesis root is set to ${GENESIS_ROOT}"
+debug_log "* Genesis is starting *" 
+debug_log "Root is set to ${GENESIS_ROOT}"
 
 # Configuration
 
@@ -29,5 +30,5 @@ fi
 
 ensure_homebrew;
 
-echo "Genesis is done";
+debug_log "Genesis is done";
 exit 0;
