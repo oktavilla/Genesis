@@ -37,16 +37,12 @@ command_exists () {
   type "$1" &> /dev/null ;
 }
 
-# From http://stackoverflow.com/questions/4023830/bash-how-compare-two-strings-in-version-format
-
-# version_above_or_equal version_to_check, min_version
-#   Returns 0 if version_to_check_is above or equal to min_version
-#   Returns 1 if version_to_check is less than min_version
-
 # Check if a version string (0.9.2) is above or equal to another version string
 #
 # arg1  - Version string to check
 # arg2  - The version to compaire against (ie. min version that should return true)
+#
+# Origin of code http://stackoverflow.com/questions/4023830/bash-how-compare-two-strings-in-version-format
 #
 # Returns 0 if arg1 is above or equal arg2 and 1 if below
 version_above_or_equal () {
