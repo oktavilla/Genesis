@@ -1,9 +1,20 @@
+# Output log message to STDOUT if $GENESIS_DEBUG is not empty
+#
+# arg1  - The message
+#
+# Returns nothing
 debug_log () {
   if ! [ -z "$GENESIS_DEBUG" ]; then
     echo "[DEBUG] $1";
   fi
 }
 
+# Execs a command and saves output if command fails
+#
+# arg1  - Command name / label
+# arg2  - The actual command as string
+#
+# Returns 1 if command fails
 g_exec () {
   command_name=$1
   command=$2
@@ -17,6 +28,11 @@ g_exec () {
   fi
 }
 
+# Check if a command exists
+#
+# arg1  - The command name, ie. ls or nginx
+#
+# Returns 0 if command exists and 1 if it is missing
 command_exists () {
   type "$1" &> /dev/null ;
 }
@@ -27,6 +43,12 @@ command_exists () {
 #   Returns 0 if version_to_check_is above or equal to min_version
 #   Returns 1 if version_to_check is less than min_version
 
+# Check if a version string (0.9.2) is above or equal to another version string
+#
+# arg1  - Version string to check
+# arg2  - The version to compaire against (ie. min version that should return true)
+#
+# Returns 0 if arg1 is above or equal arg2 and 1 if below
 version_above_or_equal () {
     if [[ $1 == $2 ]]
     then
