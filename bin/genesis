@@ -1,0 +1,38 @@
+#!/usr/bin/env sh
+
+
+# Utilities
+
+command_exists () {
+  type "$1" &> /dev/null ;
+}
+
+ensure_xcode () {
+  if ! command_exists xcruns; then
+    printf "%b" "
+
+ ** XCODE COMMAND LINE TOOLS NOT INSTALLED **
+
+ How to install the command line tools:
+
+  1) Install Xcode from the App Store
+  2) Open Xcode
+  3) Open preferenses from Xcode menu
+  4) Select Downloads and click Install for Command Line Tools 
+
+ After installed please re-run genesis.
+
+"
+    return 1
+  fi
+
+  return 0
+}
+
+# Main
+
+if ! ensure_xcode; then
+  exit;
+fi
+
+echo "Genesis is done"
