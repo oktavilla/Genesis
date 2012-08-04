@@ -13,13 +13,14 @@ fi
 source "${GENESIS_ROOT}/lib/utils.sh"
 source "${GENESIS_ROOT}/lib/xcode.sh"
 source "${GENESIS_ROOT}/lib/homebrew.sh"
+source "${GENESIS_ROOT}/lib/gcc.sh"
 
 debug_log "* Genesis is starting *" 
 debug_log "Root is set to ${GENESIS_ROOT}"
 
 # Configuration
 
-GENESIS_HOMEBREW_VERSION=0.9.3
+GENESIS_HOMEBREW_VERSION=0.9.2
 
 # Lets do this
 
@@ -29,6 +30,7 @@ if ! ensure_xcode; then
 fi
 
 ensure_homebrew;
+ensure_gcc;
 
 debug_log "Genesis is done";
 exit 0;
