@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# Exit on error
+set -e;
+
+genesis_dir=$HOME/.genesis
+shell_rc=$HOME/.bash_profile
+
+printf "%b" "
+  
+GENESIS INSTALLER
+================================================
+
+This will install genesis into your home dir and 
+setup up the executable. After setup is complete
+genesis will be triggered to install some sweet 
+software on your box. 
+
+Make sure you have a GitHub account and access to 
+the Oktavilla organizations reposistories.
+
+"
+
+# First ensure that we got Xcode installed
+if ! type "xcrun" &> /dev/null; then
+  printf "%b" "
+** XCODE COMMAND LINE TOOLS NOT INSTALLED **
+
+How to install the command line tools:
+
+1) Install Xcode from the App Store
+2) Open Xcode
+3) Open preferenses from Xcode menu
+4) Select Downloads and click Install for Command Line Tools 
+
+
+When the installation is finished hit ENTER to continue.
+  "
+  read -n 1 anykey
+fi
+
+if [ ! -d $genesis_dir ]; then
+  git clone git@github.com:Oktavilla/Genesis.git $genesis_dir
+else
+  cd $genesis_dir
+  git pull --rebase origin master
+  cd -
+fi
+
+# Add genesis bin to PATH
+if ! cat $shell_rc | grep genesis; then
+  echo "">> $shell_rc
+  echo "# Genesis" >> $shell_rc
+  echo "PATH=\"\${PATH}:\${HOME}/.genesis/bin\"" >> $shell_rc
+  source $shell_rc
+fi
+
+echo "Installation complete, running genesis.."
+
+$genesis_dir/bin/genesis
