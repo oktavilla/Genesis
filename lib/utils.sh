@@ -34,7 +34,7 @@ g_exec () {
 #
 # Returns 0 if command exists and 1 if it is missing
 command_exists () {
-  type "$1" &> /dev/null ;
+  type "$1" &> /dev/null;
 }
 
 # Check if a version string (0.9.2) is above or equal to another version string
