@@ -1,0 +1,74 @@
+STEPS I TOOK TO GET MY DEV ENV GOING
+
+Install Xcode & compilers
+Instal x11 http://xquartz.macosforge.org/trac/wiki/X112.7.2
+
+echo 'export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"' >> ~/.bash_profile
+
+ruby <(curl -fsS https://raw.github.com/mxcl/homebrew/go)
+
+(needs enter & password)
+
+brew tap homebrew/dupes
+brew install apple-gcc42
+
+curl -L https://get.rvm.io | bash -s stable --ruby
+(opens less and needs to be quitted)
+echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
+brew instal git
+echo "source `brew --prefix git`/etc/bash_completion.d/git-completion.bash" >> ~/.bashrc
+git config --global user.name "Your Name Here"
+git config --global user.email "your_email@youremail.com"
+git config --global credential.helper osxkeychain
+
+brew install imagemagick
+
+brew install mysql
+
+unset TMPDIR
+mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+mkdir -p ~/Library/LaunchAgents
+cp /usr/local/Cellar/mysql/5.5.25a/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+
+/usr/local/Cellar/mysql/5.5.25a/bin/mysqladmin -u root password 'new-password'
+/usr/local/Cellar/mysql/5.5.25a/bin/mysqladmin -u root --password=new-password -h localhost password 'new-password'
+charset setup?
+
+brew install mongodb
+cp /usr/local/Cellar/mongodb/2.0.6-x86_64/homebrew.mxcl.mongodb.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+
+brew install memcached
+cp /usr/local/Cellar/memcached/1.4.14/homebrew.mxcl.memcached.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
+
+brew install wkhtmltopdf
+
+(install heroku toolbelt?)
+heroku login
+
+ssh-keygen -t rsa
+heroku keys:add
+heroku plugins:install http://github.com/pedro/heroku-mongo-sync.git
+
+brew install macvim
+ln -s /usr/local/Cellar/macvim/7.3-64/MacVim.app /Applications
+curl -Lo- https://bit.ly/janus-bootstrap | bash
+
+UNICEF
+
+rvm install ruby-1.9.3-p125
+rvm use 1.9.3-p125
+rvm gemset create unicef
+gem install bundler
+git clone https://github.com/unicefsverige/UNICEF.git unicef
+cd unicef
+* create databases
+* fix database yml
+bundle
+
+
+PortfolioDeck
+export CC=/usr/local/bin/gcc-4.2
+CFLAGS="-I/opt/X11/include" rvm install ree
