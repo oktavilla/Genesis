@@ -15,7 +15,7 @@ brew install apple-gcc42
 curl -L https://get.rvm.io | bash -s stable --ruby
 (opens less and needs to be quitted)
 echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
-brew instal git
+brew install git
 echo "source `brew --prefix git`/etc/bash_completion.d/git-completion.bash" >> ~/.bashrc
 git config --global user.name "Your Name Here"
 git config --global user.email "your_email@youremail.com"
