@@ -9,6 +9,8 @@ update_homebrew () {
 }
 
 ensure_homebrew () {
+  ensure_path
+
   if command_exists brew; then
     installed_homebrew_version="$(brew --version)"
 
@@ -20,5 +22,11 @@ ensure_homebrew () {
     echo "Unable to find homebrew, installing .."
     install_homebrew;
     echo "  DONE"
+  fi
+}
+
+ensure_path () {
+  if [[ "$PATH" != *"/usr/local/bin"* ]]; then
+    echo 'export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"' >> ~/.bash_profile
   fi
 }
