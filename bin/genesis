@@ -48,6 +48,7 @@ fi
 # Lets do this
 ensure_homebrew;
 ensure_gcc;
+ensure_git;
 
 debug_log "Genesis is done";
 exit 0;

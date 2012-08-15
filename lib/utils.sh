@@ -9,6 +9,20 @@ debug_log () {
   fi
 }
 
+# Looks for installed recipes
+#
+# arg1 - The name of the recipe
+#
+# Returns 1 unless the recipe is installed
+brewed () {
+  brew list | grep "$1" > /dev/null 2>&1
+  if [ $? -eq 0 ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 # Execs a command and saves output if command fails
 #
 # arg1  - Command name / label
