@@ -22,7 +22,7 @@ the Oktavilla organizations reposistories.
 "
 
 # First ensure that we got Xcode and Git installed (git comes with xcode)
-if ! type "xcrun" &> /dev/null; then
+if ! type "git" &> /dev/null; then
   printf "%b" "
 ** XCODE COMMAND LINE TOOLS NOT INSTALLED **
 
@@ -40,7 +40,7 @@ When the installation is finished hit ENTER to continue.
 fi
 
 if [ ! -d $genesis_dir ]; then
-  git clone git@github.com:Oktavilla/Genesis.git $genesis_dir
+  git clone git://github.com/Oktavilla/Genesis.git $genesis_dir
 else
   cd $genesis_dir
   git pull --rebase origin master
