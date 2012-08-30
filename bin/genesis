@@ -58,6 +58,7 @@ ensure_wkhtmltopdf;
 ensure_imagemagick;
 
 ensure_vimrc;
+ensure_bash_niceties;
 
 debug_log "Genesis is done";
 exit 0;
