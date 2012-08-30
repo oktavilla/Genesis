@@ -10,6 +10,7 @@ ensure_vimrc () {
     echo "set nocompatible \" On modern vim " >> $vimrc
     echo "set encoding=utf-8" >> $vimrc
     echo "set clipboard=unnamed \" Make clipboard work with MacOS" >> $vimrc
+    echo "set number \" Line numbers" >> $vimrc
     echo "" >> $vimrc
     echo "syntax on" >> $vimrc
     echo "set t_Co=256" >> $vimrc
