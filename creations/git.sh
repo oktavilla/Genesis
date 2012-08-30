@@ -1,13 +1,13 @@
 setup_github() {
-  if ! git config --global user.email; then
-    echo "Please supply the email address you use on GitHub"
+  if ! git config --global user.email > /dev/null ; then
+    echo "Please supply the email address you use on GitHub:"
     read github_email
 
     git config --global user.email "$github_email"
   fi
 
-  if ! git config --global user.name; then
-    echo "Please supply your full name"
+  if ! git config --global user.name > /dev/null; then
+    echo "Please supply your full name:"
     read github_name
 
     git config --global user.name "$github_name"
@@ -17,21 +17,7 @@ setup_github() {
 }
 
 setup_git_colors() {
-  if ! cat $shell_rc | grep "parse_git_branch"; then
-    read -d '' branch_colors <<"EOF"
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
-}
-parse_git_modified() {
-  [[ $(git status 2> /dev/null | grep modified:) != "" ]] && echo " •"
-}
-export PS1="\\[\\033[0;32m\\]\\[\\033[0;36m\\]\\w\\[\\033[0;33m\\]\$(parse_git_branch)\\[\\033[0;31m\\]\\$(parse_git_modified)\\[\\033[0;34m\\] $\\[\\033[0m\\]"
-EOF
-    echo "$branch_colors" >> $shell_rc
-    source $shell_rc
-  fi
-
-  if ! git config --global color.ui; then
+  if ! git config --global color.ui > /dev/null; then
     git config --global color.ui "auto"
 
     git config --global color.branch.current "yellow reverse"
@@ -49,12 +35,23 @@ EOF
   fi
 }
 
+setup_shell_utils () {
+  if ! cat $shell_rc | grep "bash_completion" > /dev/null; then
+    echo "" >> $shell_rc
+    echo "# Git autocompletion + rep status in prompt" >> $shell_rc
+    echo "source `brew --prefix git`/etc/bash_completion.d/git-completion.bash" >> $shell_rc
+    echo "source `brew --prefix git`/etc/bash_completion.d/git-prompt.sh" >> $shell_rc
+    echo "GIT_PS1_SHOWDIRTYSTATE=1" >> $shell_rc
+    echo "PS1='\\u@\\h \\W\$(__git_ps1 \" (%s)\")\\$ '" >> $shell_rc
+  fi
+}
+
 ensure_git() {
   if ! brewed "git" ; then
     g_exec "InstallingGit", "brew install git"
-    echo "source `brew --prefix git`/etc/bash_completion.d/git-completion.bash" >> ~/.bashrc
   fi
 
+  setup_shell_utils
   setup_github
   setup_git_colors
 }
