@@ -1,15 +1,23 @@
 install_homebrew () {
-  g_exec "InstallHomebrew", "curl -fsSk https://raw.github.com/mxcl/homebrew/go > /tmp/brew_install.sh &&
+  curl -fsSk https://raw.github.com/mxcl/homebrew/go > /tmp/brew_install.sh &&
     ruby /tmp/brew_install.sh &&
-    rm /tmp/brew_install.sh"
+    rm /tmp/brew_install.sh
 }
 
 update_homebrew () {
   g_exec "BrewUpdate" "brew update";
 }
 
+ensure_path () {
+  if ! cat $shell_rc | grep "export PATH=\"/usr/local/bin" > /dev/null ; then
+    echo '' >> $shell_rc;
+    echo '# Add /usr/local/bin first in path' >> $shell_rc;
+    echo 'export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"' >> $shell_rc;
+  fi
+}
+
 ensure_homebrew () {
-  ensure_path
+  ensure_path;
 
   if command_exists brew; then
     installed_homebrew_version="$(brew --version)"
@@ -25,8 +33,3 @@ ensure_homebrew () {
   fi
 }
 
-ensure_path () {
-  if [[ "$PATH" != *"/usr/local/bin"* ]]; then
-    echo 'export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"' >> ~/.bash_profile
-  fi
-}
