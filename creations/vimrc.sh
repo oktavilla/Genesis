@@ -2,7 +2,7 @@ vimrc=$HOME/.vimrc
 
 ensure_vimrc () {
 
-  if [ ! -f vimrc ]; then
+  if [ ! -f $vimrc ]; then
     echo "No vimrc found, adding some sensible defaults .."
 
     echo "\" Settings added by Genesis" >> $vimrc
