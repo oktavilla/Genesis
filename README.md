@@ -14,21 +14,28 @@ version.
 
 Output from the installed software should be piped to a log file.
 
-### What this will install
+## Installation
+
+  $ curl -L https://raw.github.com/Oktavilla/Genesis/master/bin/genesis-installer | bash
+
+### What this will setup
 
 * GCC
-* X11 (http://xquartz.macosforge.org/)
 * Homebrew (first so /usr/local has the correct rights when rvm is run)
 * RVM with ruby versions REE and 1.9.x (set as default)
 * Git (with auto complete for the current shell)
 * MySQL (basic setup and autorun)
 * MongoDB (autorun)
 * Memcached
-* PostgreSQL
 * ImageMagick
 * QT
 * wkhtmltopdf
+* Github credentials
+* Vim defaults
+
+### TODO: What should be installed
+* X11 (http://xquartz.macosforge.org/)
+* PostgreSQL
 * CTAGS?
 * Heroku with credentials (should upload a ssh key for the machine)
   * MongoDB pull addon
-* Github credentials
