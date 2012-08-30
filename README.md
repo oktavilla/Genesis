@@ -16,7 +16,7 @@ Output from the installed software should be piped to a log file.
 
 ## Installation
 
-  $ curl -L https://raw.github.com/Oktavilla/Genesis/master/bin/genesis-installer | bash
+    $ curl -L https://raw.github.com/Oktavilla/Genesis/master/bin/genesis-installer | bash
 
 ### What this will setup
 
