@@ -42,8 +42,8 @@ setup_shell_utils () {
     echo "source `brew --prefix git`/etc/bash_completion.d/git-completion.bash" >> $shell_rc
     echo "source `brew --prefix git`/etc/bash_completion.d/git-prompt.sh" >> $shell_rc
     echo "GIT_PS1_SHOWDIRTYSTATE=1" >> $shell_rc
-    echo "PS1='\\W\$(__git_ps1 \" (%s)\")\\$ '" >> $shell_rc
   fi
+    echo "PS1='\\W\$(__git_ps1 \" (%s)\")\\[\\033[0;34m\\]\\$\[\\033[0m\\] '" >> $shell_rc
 }
 
 ensure_git() {
