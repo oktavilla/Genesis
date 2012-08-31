@@ -17,4 +17,12 @@ ensure_bash_niceties (){
     echo "stty stop undef" >> $shell_rc
     echo '  DONE'
   fi
+
+  input_rc=$HOME/.inputrc
+  if ! cat $input_rc | grep "set bell-style none" > /dev/null; then
+    echo 'Silence bell on completion ..'
+    echo "" >> $input_rc
+    echo "set bell-style none" >> $input_rc
+    echo '  DONE'
+  fi
 }
