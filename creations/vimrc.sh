@@ -11,6 +11,9 @@ ensure_vimrc () {
     echo "set encoding=utf-8" >> $vimrc
     echo "set clipboard=unnamed \" Make clipboard work with MacOS" >> $vimrc
     echo "set number \" Line numbers" >> $vimrc
+    echo "set hidden" >> $vimrc
+    echo "set ttyfast" >> $vimrc
+    echo "let mapleader = \",\"" >> $vimrc
     echo "" >> $vimrc
     echo "syntax on" >> $vimrc
     echo "set t_Co=256" >> $vimrc
@@ -32,6 +35,9 @@ ensure_vimrc () {
     echo "set ignorecase\" Ignore case when searching " >> $vimrc
     echo "set smartcase \" Ignore case when searching lowercase " >> $vimrc
     echo ":nnoremap <CR> :nohlsearch<CR><CR> \" Clear search on enter" >> $vimrc
+    echo "" >> $vimrc
+    echo "\" Remove trailing whitespace when a buffer is saved" >> $vimrc
+    echo "autocmd FileType c,cpp,java,php,ruby,eruby,javascript,css,scss autocmd BufWritePre <buffer> :%s/\s\+$//e" >> $vimrc
 
     echo "  DONE"
   fi
