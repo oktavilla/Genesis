@@ -32,9 +32,9 @@ Output from the installed software should be piped to a log file.
 * wkhtmltopdf
 * Github credentials
 * Vim defaults
+* X11 (http://xquartz.macosforge.org/)
 
 ### TODO: What should be installed
-* X11 (http://xquartz.macosforge.org/)
 * PostgreSQL
 * CTAGS?
 * Heroku with credentials (should upload a ssh key for the machine)
