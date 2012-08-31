@@ -55,6 +55,7 @@ ensure_mysql;
 ensure_mongodb;
 ensure_memcached;
 ensure_wkhtmltopdf;
+ensure_ghostscript;
 ensure_imagemagick;
 
 ensure_vimrc;
