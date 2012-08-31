@@ -6,7 +6,7 @@ install_rvm () {
 }
 
 install_ree () {
-  g_exec "InstallRee" "rvm install ree"
+  g_exec "InstallRee" "CFLAGS='-I/opt/X11/include' rvm install ree"
 }
 
 ensure_rvm () {
