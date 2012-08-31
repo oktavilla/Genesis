@@ -50,6 +50,7 @@ fi
 ensure_homebrew;
 ensure_gcc;
 ensure_git;
+ensure_xquartz;
 ensure_rvm;
 ensure_mysql;
 ensure_mongodb;
