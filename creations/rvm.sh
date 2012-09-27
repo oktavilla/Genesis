@@ -2,7 +2,7 @@ rvmrc=$HOME/.rvmrc
 
 install_rvm () {
   g_exec "InstallRvm" "curl -L https://get.rvm.io | bash -s stable --ruby"
-  source /Users/arvid/.rvm/scripts/rvm;
+  source $HOME/.rvm/scripts/rvm;
 }
 
 install_ree () {
